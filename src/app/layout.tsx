@@ -1,9 +1,8 @@
-import { ThemeProvider } from "@/components/theme-provider";
-
 import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-
+import React from "react";
+import { ThemeProvider } from "../components/theme-provider";
 export const metadata: Metadata = {
   title: "NerdyNarayan",
   description: "My portfolio website",

@@ -66,6 +66,9 @@
       -ms-overflow-style: none; 
       scrollbar-width: none; 
 }
+.gradient-text {
+  @apply bg-gradient-to-r from-orange-400 via-white to-green-300 bg-clip-text text-transparent;
+}
 }
 @layer base {
   * {
