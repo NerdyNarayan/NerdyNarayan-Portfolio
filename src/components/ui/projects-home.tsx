@@ -13,7 +13,7 @@ const ProjectCardHome = () => {
             alt="Project cover image"
             width={400}
             height={400}
-            className="z-0 rounded-2xl w-[500px] h-[300px] rounded-t-none"
+            className=" rounded-2xl w-[500px] h-[300px] rounded-t-none"
           />
           <CardTitle className=" px-2 absolute bottom-16 left-2  text-xl  text-white">
             Project

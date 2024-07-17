@@ -40,7 +40,7 @@ const Hero = () => {
                 <span className="font-bold ">+</span>
                 <RotateWord
                   words={["Designer", "Creator", "Innovator"]}
-                  className="text-2xl text-primary/[0.4] md:text-4xl"
+                  className="text-2xl  md:text-4xl"
                 />
               </div>
             </div>

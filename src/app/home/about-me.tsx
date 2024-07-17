@@ -10,12 +10,12 @@ const AboutMe = () => {
         <div className="flex justify-center mb-10">About me</div>
         <div className="grid gap-4"></div>
         <BentoGrid className="w-full">
-          <BentoGridItem className="row-span-2 ">
+          <BentoGridItem className="md:row-span-2 ">
             <Card className="">
               <CardHeader>Learn more about me</CardHeader>
             </Card>
           </BentoGridItem>
-          <BentoGridItem className="col-span-3 ">
+          <BentoGridItem className="md:col-span-3 ">
             <Card className="">
               <CardHeader>Stack</CardHeader>
             </Card>
@@ -25,7 +25,7 @@ const AboutMe = () => {
               <CardHeader>ToolBox</CardHeader>
             </Card>
           </BentoGridItem>{" "}
-          <BentoGridItem className="row-span-1 col-span-2  ">
+          <BentoGridItem className="md:row-span-1 md:col-span-2  ">
             <Card className="">
               <CardHeader> My socials</CardHeader>
             </Card>
