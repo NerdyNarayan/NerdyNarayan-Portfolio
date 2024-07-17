@@ -1,13 +1,13 @@
-import MoveIntoView from "./framer/move-into-view";
-import ProjectCardHome from "./ui/projects-home";
-import { Button } from "./ui/button";
+import MoveIntoView from "../../components/framer/move-into-view";
+import ProjectCardHome from "../../components/ui/projects-home";
+import { Button } from "../../components/ui/button";
 
 import React from "react";
 
 const MyProjects = () => {
   return (
     <MoveIntoView down={true}>
-      <div className="mt-10 flex flex-col border-t border-b">
+      <div className="mt-10 flex flex-col ">
         <div className="flex justify-center py-4 text-2xl font-extrabold text-primary">
           My Projects
         </div>

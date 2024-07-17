@@ -8,12 +8,12 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { TbAtomOff } from "react-icons/tb";
 
 import MoveIntoView from "./framer/move-into-view";
-import { ModeToggle } from "./theme-button";
+import { ModeToggle } from "./ui/theme-button";
 
 export default function MainNav() {
   return (
     <MoveIntoView up={true}>
-      <div className="   sticky mt-4   flex  flex-row items-center justify-between   pb-4 border-b-2  ">
+      <div className="   sticky   mt-4   flex  flex-row items-center justify-between   pb-4 border-b-2  ">
         <motion.div whileHover={{ scale: 1.1 }} className="flex">
           <Link href="/" className="flex items-center gap-1 text-xl font-bold">
             <TbAtomOff className="text-2xl" />
