@@ -3,9 +3,9 @@
  * for Docker builds.
  */
 // eslint-disable-next-line import/extensions
-await import('./src/env.js')
+await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {}
+const config = {};
 
-export default config
+export default config;
