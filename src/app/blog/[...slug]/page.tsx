@@ -13,7 +13,7 @@ async function getPost(params: { params: { slug: string } }) {
 export default async function page(params: { params: { slug: string } }) {
   const post = await getPost(params);
   return (
-    <div className="flex flex-col gap-2 py-3  mx-auto md:max-w-3xl max-w-screen-sm break-all overflow-visible">
+    <article className="container py-6 prose dark:prose-invert max-w-3xl mx-auto">
       <div className="">
         <img
           className="w-full h-40 "
@@ -24,18 +24,18 @@ export default async function page(params: { params: { slug: string } }) {
         />
       </div>
 
-      <div className=" mt-4 flex items-center flex-col ">
+      <div className=" ">
         <Mdx code={post?.body ?? ""} components={{}} />
       </div>
       <div className="border-t py-4 justify-end flex">
         <Link
           href={"/blog"}
-          className=" text-2xl rounded-lg text-text bg-lavender/80 py-3 px-6 hover:bg-lavender/100"
+          className=" text-2xl text-wrap overflow-hidden rounded-lg text-text bg-lavender/80 py-3 px-6 hover:bg-lavender/100"
         >
           Read more blogs
         </Link>
         ?? ""
       </div>
-    </div>
+    </article>
   );
 }
