@@ -35,7 +35,7 @@ export default defineConfig({
   mdx:{
     rehypePlugins:[
       rehypeSlug as any,
-      [rehypePrettyCode,{theme:"github-dark"}],
+      [rehypePrettyCode,{theme:"vitesse-black"}],
      [rehypeAutolinkHeadings,{
       properties:{
           className:["subheading-anchor"],

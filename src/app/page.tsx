@@ -6,6 +6,8 @@ import MyProjects from "./home/my-projects";
 import AboutMe from "./home/about-me";
 import Image from "next/image";
 import { posts } from "#site/content";
+import { Mdx, MDXContent } from "@/components/mdx-components";
+import { Callout } from "@/components/callout";
 export default function HomePage() {
   return (
     <div className="mx-auto flex justify-center">
@@ -21,7 +23,7 @@ export default function HomePage() {
           <MyProjects />
 
           <AboutMe />
-          <div className="">
+          <div className="max-w-2xl mx-auto">
             {posts.map((post) => (
               <div>
                 <h1>{post.title}</h1>
@@ -31,7 +33,7 @@ export default function HomePage() {
                   height={100}
                   width={100}
                 />
-                <p>{post.description}</p>
+                <Mdx code={post.body} components={{ Callout }}></Mdx>
               </div>
             ))}
           </div>
