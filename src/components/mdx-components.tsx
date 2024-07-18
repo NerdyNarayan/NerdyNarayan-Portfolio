@@ -159,7 +159,7 @@ const components = {
   }) => (
     <code
       className={cn(
-        "relative  bg-[#303446]  overflow-y-auto   dark:bg-gray-950 rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "relative  bg-[#303446]/20  overflow-y-auto    rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
         className
       )}
       {...props}

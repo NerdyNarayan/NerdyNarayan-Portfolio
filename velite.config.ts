@@ -9,7 +9,7 @@ const computedFields = <T extends { slug: string }>(data: T) => ({
   ...data,
   slugAsParams: data.slug.split("/").slice(1).join("/"),
 })
-const posts=defineCollection({
+ const posts=defineCollection({
   name:"Post",
   pattern:"blog/**/*.mdx",
   schema:s.object({
@@ -20,9 +20,8 @@ const posts=defineCollection({
     published:s.boolean().default(true),
     banner:s.string().max(99),
     body:s.mdx()
-  }).transform(computedFields)
-})
-export default defineConfig({
+  }).transform(computedFields)})
+    export default defineConfig({
   root: "content",
   output: {
     data: "./.velite",
@@ -41,7 +40,7 @@ export default defineConfig({
           className:["subheading-anchor"],
           ariaLabel:"Link to heading"
       }
-     }] 
+     }]
     ]
   }
 })
