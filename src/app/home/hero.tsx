@@ -26,10 +26,22 @@ const Hero = () => {
       <MoveIntoView left={true}>
         <div className="">
           <div className="flex text-pretty flex-col">
-            <div className="mb-5">
+            <div className="mb-5 flex">
               <span className=" font-sans  text-muted-foreground text-lg ">
                 <TypeWord />
               </span>
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.6,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+                className="text-muted-foreground text-lg"
+              >
+                |
+              </motion.span>
             </div>
 
             <div className="flex flex-col  text-wrap font-bold md:text-5xl text-[34px]">
@@ -77,9 +89,8 @@ const Hero = () => {
         variants={variant}
       >
         <Image
-          className="hidden rounded-full overflow-hidden w-[180px] h-[180px]    md:block"
+          className="hidden rounded-full shadow-xl overflow-hidden w-[180px] h-[180px]    md:block"
           src="/Profile.jpg"
-          objectFit="fill"
           width={200}
           height={200}
           alt="image"

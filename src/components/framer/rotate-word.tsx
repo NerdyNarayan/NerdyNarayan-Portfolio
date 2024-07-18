@@ -25,7 +25,7 @@ export default function RotateWord(props: RotateWordProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="text-gradient bg-gradient-to-r bg-clip-text text-transparent from-primary to-purple-300"
+          className="text-gradient bg-gradient-to-r bg-clip-text text-transparent from-gray-200  to-purple-300"
         >
           {words[index]}
         </motion.h1>
