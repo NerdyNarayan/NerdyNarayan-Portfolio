@@ -5,7 +5,7 @@ import * as runtime from "react/jsx-runtime";
 import { cn } from "@/lib/utils";
 import { MdxCard } from "./mdx-card";
 import { Button } from "./ui/button";
-import { Callout } from "./callout";
+import { PreCard } from "./pre-card";
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -16,7 +16,7 @@ const components = {
   h1: ({ className, ...props }: { className: string }) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
+        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight   ",
         className
       )}
       {...props}
@@ -103,7 +103,10 @@ const components = {
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn("rounded-md border", className)} alt={alt} {...props} />
+    <img
+      className={cn("rounded-md border h-[30rem] w-full", className)}
+      {...props}
+    />
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
@@ -138,23 +141,13 @@ const components = {
   pre: ({
     className,
     children,
-    pwd,
+    title,
     ...props
   }: {
     className: string;
     children: React.ReactNode;
-    pwd: string;
-  }) => (
-    <pre
-      className={cn("mb-4 mt-6 overflow-x-auto rounded-sm", className)}
-      {...props}
-    >
-      <div className="border border-b-0 bg-card flex flex-row items-center gap-2  px-2 py-1.5 text-sm">
-        <div>{pwd}</div>
-      </div>
-      {children}
-    </pre>
-  ),
+    title: string;
+  }) => <pre className={className}>{children}</pre>,
   code: ({
     className,
 
@@ -166,7 +159,7 @@ const components = {
   }) => (
     <code
       className={cn(
-        "relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "relative rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
         className
       )}
       {...props}
@@ -174,7 +167,7 @@ const components = {
   ),
   Image,
   Card: MdxCard,
-  Callout,
+  PreCard,
 };
 
 interface MdxProps {

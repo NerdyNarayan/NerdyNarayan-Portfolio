@@ -1,6 +1,6 @@
-import MoveIntoView from "../../components/framer/move-into-view";
-import ProjectCardHome from "../../components/ui/projects-home";
-import { Button } from "../../components/ui/button";
+import MoveIntoView from "../framer/move-into-view";
+import ProjectCardHome from "../ui/projects-home";
+import { Button } from "../ui/button";
 
 import React from "react";
 

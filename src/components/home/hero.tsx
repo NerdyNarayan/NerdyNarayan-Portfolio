@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import RotateWord from "../../components/framer/rotate-word";
+import RotateWord from "../framer/rotate-word";
 import Image from "next/image";
-import { TypeWord } from "../../components/framer/type-word";
-import MoveIntoView from "../../components/framer/move-into-view";
+import { TypeWord } from "../framer/type-word";
+import MoveIntoView from "../framer/move-into-view";
 import { FaGlobeAmericas } from "react-icons/fa";
-import { Button } from "../../components/ui/button";
+import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 const Hero = () => {
   const variant = {

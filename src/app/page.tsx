@@ -1,13 +1,13 @@
 import React from "react";
-
 import MainNav from "../components/mainNav";
-import Hero from "./home/hero";
-import MyProjects from "./home/my-projects";
-import AboutMe from "./home/about-me";
+import Hero from "../components/home/hero";
+import MyProjects from "../components/home/my-projects";
+import AboutMe from "../components/home/about-me";
 import Image from "next/image";
 import { posts } from "#site/content";
 import { Mdx, MDXContent } from "@/components/mdx-components";
-import { Callout } from "@/components/callout";
+import { PreCard } from "@/components/pre-card";
+import LatestPost from "../components/home/latest-post";
 export default function HomePage() {
   return (
     <div className="mx-auto flex justify-center">
@@ -17,26 +17,12 @@ export default function HomePage() {
 
       <div className=" container absolute z-10  flex max-w-5xl flex-col  sm:min-h-screen overflow-y-scroll no-scrollbar">
         <div className="z-40">
-          <MainNav />
           <div className="h-20"></div>
           <Hero />
           <MyProjects />
 
           <AboutMe />
-          <div className="max-w-2xl mx-auto">
-            {posts.map((post) => (
-              <div>
-                <h1>{post.title}</h1>
-                <Image
-                  src={post.banner}
-                  alt={post.title}
-                  height={100}
-                  width={100}
-                />
-                <Mdx code={post.body} components={{ Callout }}></Mdx>
-              </div>
-            ))}
-          </div>
+          <LatestPost />
         </div>
       </div>
     </div>

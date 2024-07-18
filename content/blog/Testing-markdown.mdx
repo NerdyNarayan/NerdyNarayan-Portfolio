@@ -1,116 +1,219 @@
 ---
-title: Hello World
-description: This is a test blog to check the markdown tags
-date: 2024-05-18
+title: Setting up a controlled development environment for a monorepo Part-2 
+description: Setting up prettier+Nx+Husky+Lint-Staged+scripts for a streamlined development workflow
+date: 2024-07-07
 published: true
 banner: /static/Profile.jpg
 
 ---
-# Exploring the Beauty of Markdown
-## What is Markdown?
 
-Markdown is a text formatting syntax created by John Gruber in 2004. It aims to be as readable as possible in its raw form, making it easy to convert to HTML and other formats. The syntax is straightforward and intuitive, allowing you to focus on your writing without worrying about complex formatting.
-## Benefits of Using Markdown
-1. **Simplicity**: Markdown's syntax is simple and easy to learn. You can start writing formatted text with just a few basic rules.
-2. **Readability**: The plain text format of Markdown is highly readable, even without rendering it into HTML. This makes it easy to edit and maintain your documents.
-3. **Portability**: Markdown files are plain text, which means they are lightweight and can be opened with any text editor. They are also version control-friendly, making them perfect for collaboration.
-4. **Flexibility**: With Markdown, you can write anything from simple blog posts to complex technical documentation. There are also various extensions available to enhance its functionality.
+Welcome to this comprehensive guide on setting up Prettier in a monorepo! In this blog,
+I'll walk you through the steps to manage formatting, linting, and type-checking across all projects and 
+packages in your monorepo. We'll leverage several tools to streamline our development workflow:
 
-## Basic Markdown Syntax
+- **Prettier**: For consistent code formatting.
+- **TypeScript**: For robust linting and type safety.
+- **Husky**: To automate validations on commits.
+- **Nx**: To smartly manage scripts and cache across the monorepo  
+- **lint-staged**: To ensure validations are applied only to staged files.
 
-Here are some common Markdown elements to get you started:
 
-### Headings
 
-Use `#` for headings. The number of `#` symbols indicates the level of the heading.
+## Folder Structure
+```js
+├── [4.0K]  apps/
+│   ├── [4.0K]  api/
+│   │   ├── [4.0K]  dist/  
+│   │   ├── [4.0K]  src/
+│   │   ├── [4.0K]  test/
+│   │   ├── [ 171]  nest-cli.json
+│   │   ├── [2.0K]  package.json
+│   │   ├── [3.3K]  README.md
+│   │   ├── [  97]  tsconfig.build.json
+│   │   └── [ 546]  tsconfig.json
+│   └── [4.0K]  web/
+│       ├── [4.0K]  public/
+│       ├── [4.0K]  src/
+│       │   └── [4.0K]  app/
+│       │       ├── [  59]  globals.css
+│       │       ├── [ 481]  layout.tsx
+│       │       └── [ 126]  page.tsx
+│       ├── [  92]  next.config.mjs
+│       ├── [ 201]  next-env.d.ts
+│       ├── [ 619]  package.json
+│       ├── [ 135]  postcss.config.mjs
+│       ├── [1.4K]  README.md
+│       ├── [ 507]  tailwind.config.ts
+│       ├── [ 578]  tsconfig.json
+│       └── [ 86K]  tsconfig.tsbuildinfo
+├── [4.0K]  libs/
+│   └── [4.0K]  sample-library/
+│       ├── [4.0K]  Dist/
+│       ├── [  51]  index.ts
+│       ├── [ 260]  package.json
+│       └── [ 12K]  tsconfig.json
+├── [ 497]  nx.json
+├── [ 788]  package.json
+├── [263K]  pnpm-lock.yaml
+├── [  32]  pnpm-workspace.yaml
+├── [ 845]  README.md
+└── [ 256]  tsconfig.json
 
-```js  
-const options = {
-  theme: JSON.parse(fs.readFileSync("./themes/moonlight-ii.json", "utf-8")),
-};
 ```
-<Callout >This is a custom component</Callout>
-
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-### Emphasis
 
 
-You can add emphasis using asterisks or underscores.
+---
 
-- *Italic* or _Italic_
-- **Bold** or __Bold__
-- ***Bold Italic*** or ___Bold Italic___
 
-### Lists
 
-Markdown supports both ordered and unordered lists.
+## Project Structure
 
-- Unordered list item 1
-- Unordered list item 2
-  - Nested item 1
-  - Nested item 2
+In my project, I have two workspaces mentioned in my `pnpm-workspace.yaml`:
 
-1. Ordered list item 1
-2. Ordered list item 2
-
-### Links
-
-You can create links using square brackets for the text and parentheses for the URL.
-
+<PreCard pwd="./pnpm-workspace.yaml">
+```yaml
+packages:
+  - 'apps/*'
+  - 'libs/*'
 ```
-[OpenAI](https://www.openai.com)
+</PreCard>
+
+
+The `apps` directory contains:
+- **frontend**: Next.js application.
+- **backend**: Nest.js application.
+
+The `libs` directory contains:
+- **barebone TypeScript**: A sample library to test a local library. 
+you can checkout my blog on setting up typescript from scratch for a mono repo
+ [Blog](https://artemisio.vercel.app/blog/Setting-up-typescript-for-a-monorepo-from-scratch)
+
+## Step 1: Install the Dependencies
+
+First, install the necessary dependencies in the root directory:
+<PreCard pwd="shell">
+```shell
+pnpm add -D prettier -w
+pnpm add --save-dev husky lint-staged -w
+npx nx@latest init
 ```
-[OpenAI](https://www.openai.com)
+</PreCard>
 
 
-### Images
+The `nx` command will prompt you to choose the order in which you want to run the scripts. 
+Arrange them according to your preference. Keep in mind this creates an `nx.json` file, allowing easy addition or editing of scripts in the future. Ensure caching is enabled. Here is my `nx.json`:
 
-Images are similar to links but with an exclamation mark at the beginning.
-
-```markdown
-![Alt text](https://example.com/image.jpg)
-```
-![This is an image](https://source.unsplash.com/random/1000x500)
-
-
-### Blockquotes
-
-Blockquotes are created using the `>` symbol.
-
-```markdown
-> This is a blockquote.
-```
-> This is a blockquote.
-### Code
-
-Inline code can be added using backticks. For code blocks, use triple backticks.
-
-```markdown
-`Inline code`
-```
-`Const a`
-
-```js 
-let a=20;
-    if(a>10){
-    console.log("a is greater than 10")
+```json
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/.next,build,dist"],
+      "cache": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "cache": true
+    },
+    "tsc": {
+      "cache": true
+    }
+  },
+  "defaultBase": "master"
 }
 ```
 
-## Conclusion
+You can verify whether `nx` is working correctly by running:
 
-Markdown is a powerful and versatile tool for writing and formatting text. Its simplicity and readability make it an excellent choice for bloggers, developers, and anyone who wants to create well-structured documents. Give it a try on your blog website and experience the beauty of Markdown for yourself!
+```bash
+pnpm exec nx run-many -t <some script that is common in all files>
+```
+
+![](/Profile.jpg)
+
+
+## Step 2: Create Files
+
+### Prettier Configuration
+
+Create a `.prettierrc` file in the root directory and add your required formatting rules. Here are the rules I used:
+
+```json
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": false,
+  "tabWidth": 2,
+  "quoteProps": "as-needed",
+  "bracketSpacing": true,
+  "bracketSameLine": false
+}
+```
+
+### Adding Scripts
+
+In the root directory, add the following scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "build": "pnpm exec nx run-many -t build",
+    "tsc": "pnpm exec nx run-many -t tsc",
+    "lint": "pnpm exec nx run-many -t lint",
+    "format": "prettier \"{apps,libs}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
+    "format:check": "pnpm format --check",
+    "format:write": "pnpm format --write",
+    "validate": "pnpm format:write && pnpm lint && pnpm tsc"
+  }
+}
+```
+
+#### Script Breakdown
+
+1. **build**: Runs the build script in all subprojects.
+2. **tsc**: The TypeScript compiler which outputs the compiled TypeScript code in CommonJS format. 
+[Check out the TODO section for a detailed TypeScript setup](#).
+3. **lint**: Runs all available lint scripts, like ESLint.
+4. **format, format:write, format:check**: Scripts to use Prettier. 
+5. **validate**: Executes `format:write`, `lint`, and `tsc` scripts in order.
+
+### Set up lint-staged
+
+Add the following configuration to your `package.json` in the root directory:
+
+```json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "pnpm validate"
+  }
+}
+```
+
+This sets up lint-staged to run the `validate` script only on staged files.
+
+### Set up Husky
+
+Add a pre-commit hook in your `.husky` file:
+
+```sh
+pnpm lint-staged
+```
+
+This ensures the lint-staged command runs whenever you try to make a commit.
+
+---
+
+### Verification
+
+Let's verify the setup by intentionally causing errors. In my `sample-lib`, I have an `index.ts`. Let's break it:
+
+![alt](/BlogAssets/Pasted-image-20240705144117.png)
+
+After saving, try to stage the file and commit it.
+ You can see the error log here: [⚠ Running tasks for staged files... - Pastebin.com](https://pastebin.com/MrGaNSS9)
+
+As you can see, it prevented us from committing faulty code to our codebase, which is incredibly helpful.
 
 
 
-## 🌐 Sources
-
-1. [medium.com - Creating a Simple Blog Using Vue with Markdown](https://medium.com/@yhev/creating-a-simple-blog-using-vue-with-markdown-487979e1b62d)
-2. [medium.com - Add a blog to your Angular website using markdown files](https://daviddalbusco.medium.com/add-a-blog-to-your-angular-website-using-markdown-files-31cdb0627bdd)
-3. [dev.to - Export Medium Stories to Markdown format](https://dev.to/ksingh7/export-medium-stories-to-markdown-format-108b)
-4. [medium.com - How to create a Medium-like personal blog for free in a day](https://medium.com/geekculture/how-to-create-a-medium-like-personal-blog-for-free-in-a-day-55ebd9551d9c)
-5. [towardsdatascience.com - Converting Medium Posts to Markdown for Your Blog](https://towardsdatascience.com/converting-medium-posts-to-markdown-for-your-blog-5d6830408467)
-6. [medium.com - How to Write & Cross Post your Markdown Content](https://medium.com/@rich_47473/how-to-write-cross-post-your-markdown-content-bfb0632531a9)
