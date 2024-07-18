@@ -65,7 +65,14 @@
   .no-scrollbar {
       -ms-overflow-style: none; 
       scrollbar-width: none; 
-}
+  }
+      .scrollbar::-webkit-scrollbar {
+        display: block;
+    }
+    .scrollbar {
+        -ms-overflow-style: block; 
+        scrollbar-width: block; 
+    }
 .gradient-text {
   @apply bg-gradient-to-r from-orange-400 via-white to-green-300 bg-clip-text text-transparent;
 }

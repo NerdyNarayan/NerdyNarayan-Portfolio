@@ -3,10 +3,9 @@ title: Setting up a controlled development environment for a monorepo Part-2
 description: Setting up prettier+Nx+Husky+Lint-Staged+scripts for a streamlined development workflow
 date: 2024-07-07
 published: true
-banner: /static/Profile.jpg
+banner: /static/PrettierTypescriptNx.png
 
 ---
-
 Welcome to this comprehensive guide on setting up Prettier in a monorepo! In this blog,
 I'll walk you through the steps to manage formatting, linting, and type-checking across all projects and 
 packages in your monorepo. We'll leverage several tools to streamline our development workflow:
@@ -17,9 +16,9 @@ packages in your monorepo. We'll leverage several tools to streamline our develo
 - **Nx**: To smartly manage scripts and cache across the monorepo  
 - **lint-staged**: To ensure validations are applied only to staged files.
 
+---
 
-
-## Folder Structure
+<PreCard pwd="Folder Tree">
 ```js
 ├── [4.0K]  apps/
 │   ├── [4.0K]  api/
@@ -60,13 +59,14 @@ packages in your monorepo. We'll leverage several tools to streamline our develo
 └── [ 256]  tsconfig.json
 
 ```
+</PreCard>
+
 
 
 ---
 
 
 
-## Project Structure
 
 In my project, I have two workspaces mentioned in my `pnpm-workspace.yaml`:
 
@@ -103,6 +103,7 @@ npx nx@latest init
 The `nx` command will prompt you to choose the order in which you want to run the scripts. 
 Arrange them according to your preference. Keep in mind this creates an `nx.json` file, allowing easy addition or editing of scripts in the future. Ensure caching is enabled. Here is my `nx.json`:
 
+<PreCard pwd="nx.json">
 ```json
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
@@ -123,22 +124,25 @@ Arrange them according to your preference. Keep in mind this creates an `nx.json
   "defaultBase": "master"
 }
 ```
+</PreCard>
+
 
 You can verify whether `nx` is working correctly by running:
-
+<PreCard pwd="shell">
 ```bash
 pnpm exec nx run-many -t <some script that is common in all files>
 ```
+</PreCard>
 
-![](/Profile.jpg)
 
+![alt](/static/Pasted-image-20240705144117.png)
 
 ## Step 2: Create Files
 
 ### Prettier Configuration
 
 Create a `.prettierrc` file in the root directory and add your required formatting rules. Here are the rules I used:
-
+<PreCard pwd="./.prettierrc">
 ```json
 {
   "singleQuote": true,
@@ -150,11 +154,13 @@ Create a `.prettierrc` file in the root directory and add your required formatti
   "bracketSameLine": false
 }
 ```
+</PreCard>
+
 
 ### Adding Scripts
 
 In the root directory, add the following scripts to your `package.json`:
-
+<PreCard pwd="./package.json">
 ```json
 {
   "scripts": {
@@ -168,6 +174,8 @@ In the root directory, add the following scripts to your `package.json`:
   }
 }
 ```
+</PreCard>
+
 
 #### Script Breakdown
 
@@ -181,6 +189,7 @@ In the root directory, add the following scripts to your `package.json`:
 ### Set up lint-staged
 
 Add the following configuration to your `package.json` in the root directory:
+<PreCard pwd="./package.json">
 
 ```json
 {
@@ -189,6 +198,7 @@ Add the following configuration to your `package.json` in the root directory:
   }
 }
 ```
+</PreCard>
 
 This sets up lint-staged to run the `validate` script only on staged files.
 
@@ -196,10 +206,12 @@ This sets up lint-staged to run the `validate` script only on staged files.
 
 Add a pre-commit hook in your `.husky` file:
 
+<PreCard pwd="shell">
+
 ```sh
 pnpm lint-staged
 ```
-
+</PreCard>
 This ensures the lint-staged command runs whenever you try to make a commit.
 
 ---
@@ -208,7 +220,7 @@ This ensures the lint-staged command runs whenever you try to make a commit.
 
 Let's verify the setup by intentionally causing errors. In my `sample-lib`, I have an `index.ts`. Let's break it:
 
-![alt](/BlogAssets/Pasted-image-20240705144117.png)
+![alt](/static/Pasted-image-20240705144117.png)
 
 After saving, try to stage the file and commit it.
  You can see the error log here: [⚠ Running tasks for staged files... - Pastebin.com](https://pastebin.com/MrGaNSS9)

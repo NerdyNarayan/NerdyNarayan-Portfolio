@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import posts from "#site/content";
+import { Button } from "../ui/button";
 interface PostItemProps {
   slug: string;
   title: string;
@@ -27,11 +28,9 @@ export function PostItem({ slug, title, description, Banner }: PostItemProps) {
           <Link href={`/${slug}`}>{title}</Link>
         </div>
         <div className="max-w-none text-muted-foreground">{description}</div>
-        <div className="flex flex-end text-lavender/80 hover:text-lavender">
-          <Link href={`/${slug}`} className="text-primary">
-            Read More...
-          </Link>
-        </div>
+        <Button className="flex ">
+          <Link href={`/${slug}`}>Read more</Link>
+        </Button>
       </article>
     </div>
   );

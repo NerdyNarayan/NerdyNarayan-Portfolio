@@ -2,6 +2,7 @@ import { posts } from "#site/content";
 import Link from "next/link";
 import React from "react";
 import { PostItem } from "./post-items";
+import { Button } from "../ui/button";
 
 const LatestPost = () => {
   return (
@@ -23,9 +24,9 @@ const LatestPost = () => {
         })}
 
         <Link href="/blog">
-          <div className="hidden md:flex items-center justify-center gap-2 bg-primary/80  py-3 hover:bg-primary/40 transition-all duration-100 ">
-            View All my blogs
-          </div>
+          <Button className="mt-4 bg-primary-foreground text-primary flex mx-auto">
+            View More
+          </Button>
         </Link>
       </div>
     </>

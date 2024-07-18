@@ -69,7 +69,10 @@ const components = {
   ),
   a: ({ className, ...props }: { className: string }) => (
     <a
-      className={cn("font-medium underline underline-offset-4", className)}
+      className={cn(
+        "font-medium text-primary/80 hover:underline hover:text-primary/90  underline-offset-4",
+        className
+      )}
       {...props}
     />
   ),
@@ -103,10 +106,7 @@ const components = {
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className={cn("rounded-md border h-[30rem] w-full", className)}
-      {...props}
-    />
+    <img className={cn("rounded-md border   w-full", className)} {...props} />
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
@@ -159,7 +159,7 @@ const components = {
   }) => (
     <code
       className={cn(
-        "relative text-wrap  rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "relative  bg-[#303446]  overflow-y-auto   dark:bg-gray-950 rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
         className
       )}
       {...props}

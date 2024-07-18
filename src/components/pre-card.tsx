@@ -25,7 +25,7 @@ export function PreCard({
     window.navigator.clipboard.writeText(text);
   };
   return (
-    <div className="border mt-4  ">
+    <div className="border mt-4 min-h-20 ">
       <div className="flex bg-muted/20 font-mono text-sm  flex-row justify-between items-center gap-2  px-2 ">
         {pwd}
         <Button
