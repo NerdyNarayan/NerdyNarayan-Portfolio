@@ -30,12 +30,12 @@ export function PostItem({
       <div className=" grid md:grid-cols-4 w-full mb-5  ">
         <div className="flex col-span-3 flex-col  gap-2 transition-all duration-200">
           <div className="flex font-mono text-[#a6adc8] text-xl gap-4">
-            <div> {date.split("T", 1)}</div>
+            <div className="text-sm md:text-lg"> {date.split("T", 1)}</div>
             {tags?.map((tag, index) => {
               return (
                 <div
                   key={index}
-                  className="flex transparent text-lg bg-[#cba6f7]/90
+                  className="flex transparent text-sm items-center md:text-lg bg-[#cba6f7]/90
                   hover:bg-[#cba6f7]/80 text-primary-foreground mr-2 rounded-xl
                   px-2 shadow"
                 >
@@ -48,7 +48,7 @@ export function PostItem({
           <div className="flex md:text-3xl text-2xl font-bold text-wrap  ">
             {title}
           </div>
-          <div className="flex text-xl text-[#45475a]">{description}</div>
+          <div className="flex text-xl text-[#a6adc8]">{description}</div>
         </div>
         <Image
           src={Banner}

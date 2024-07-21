@@ -147,7 +147,7 @@ const components = {
     className: string;
     children: React.ReactNode;
     title: string;
-  }) => <pre className={className}>{children}</pre>,
+  }) => <pre className={cn(className, "bg-[#1e1e2e] ")}>{children}</pre>,
   code: ({
     className,
 
@@ -159,7 +159,7 @@ const components = {
   }) => (
     <code
       className={cn(
-        "relative  bg-[#303446]/20  overflow-y-auto    rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "relative shadow-sm dark:shadow-slate-100  overflow-y-auto    rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
         className
       )}
       {...props}

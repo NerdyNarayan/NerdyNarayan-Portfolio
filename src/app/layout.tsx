@@ -7,7 +7,7 @@ import MainNav from "@/components/mainNav";
 export const metadata: Metadata = {
   title: "NerdyNarayan",
   description: "My portfolio website",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ url: "/Profile.jpg" }],
 };
 
 export default function RootLayout({

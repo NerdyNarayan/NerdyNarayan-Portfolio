@@ -3,7 +3,7 @@ title: Setting up a controlled development environment for a monorepo Part-2
 description: Setting up prettier+Nx+Husky+Lint-Staged+scripts for a streamlined development workflow
 date: 2024-07-07
 published: true
-banner: "/PrettierTypescriptNx.png"
+banner: "/static/images/PrettierTypescriptNx.png"
 tags: ["TypeScript", "NextJs"]
 ---
 
@@ -134,7 +134,7 @@ pnpm exec nx run-many -t <some script that is common in all files>
 ```
 </PreCard>
 
-![alt](/static/Pasted-image-20240705144117.png)
+![alt](/static/images/Pasted-image-20240705144117.png)
 
 ## Step 2: Create Files
 
@@ -222,7 +222,7 @@ This ensures the lint-staged command runs whenever you try to make a commit.
 
 Let's verify the setup by intentionally causing errors. In my `sample-lib`, I have an `index.ts`. Let's break it:
 
-![alt](/static/Pasted-image-20240705144117.png)
+![alt](/static/images/Pasted-image-20240705144117.png)
 
 After saving, try to stage the file and commit it.
 You can see the error log here: [⚠ Running tasks for staged files... - Pastebin.com](https://pastebin.com/MrGaNSS9)

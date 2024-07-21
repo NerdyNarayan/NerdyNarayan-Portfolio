@@ -8,6 +8,9 @@ import { posts } from "#site/content";
 import { Mdx, MDXContent } from "@/components/mdx-components";
 import { PreCard } from "@/components/pre-card";
 import LatestPost from "../components/home/latest-post";
+import { Marquee } from "@/components/ui/marquee";
+import { FaReact } from "react-icons/fa";
+import { Card, CardContent } from "@/components/ui/card";
 export default function HomePage() {
   return (
     <div className=" flex justify-center ">
@@ -20,6 +23,7 @@ export default function HomePage() {
 
           <AboutMe />
           <LatestPost />
+
           <div className="absolute -z-50 left-auto right-0 bottom-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[70%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
         </div>
       </div>
