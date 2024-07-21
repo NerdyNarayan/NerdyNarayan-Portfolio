@@ -1,0 +1,83 @@
+---
+title: Linked_List_101 A Beginner's Guide by a Beginner
+description: What the hell is a linked list, lets demystify it together in this blog.
+date: 2024-07-21
+published: true
+banner: /images/blog/Linked-List-101.png
+tags: ["DSA", "101"]
+---
+
+## Introduction
+
+Before diving into the concept of a linked list, imagine the workings of your top navigation bar in your browser with the back (`<`) and forward (`>`) buttons. This is a practical implementation of a linked list. Now, let's think about how we would create something similar using an array.
+
+1. Create an array of fixed size.
+2. The first element of the array points to the home page.
+
+```cpp
+["google.com"]
+```
+
+3. Whenever a user clicks on a new page, it is added to the array:
+
+```cpp
+["google.com", "youtube.com", "github.com"]
+```
+
+Now, suppose we want to go back to google and then visit reddit. We traverse back in the array to google. However, the problem arises when we want to add reddit in front of google and remove both youtube and github. We can't just insert an element between google and youtube, since for an element to be added, we need the exact next memory location to be empty, and it is impossible to guarantee that it is empty.
+This would lead to memory issues and is quite a hassle.
+
+This problem is solved using a linked list. With a linked list, we can store data in a way that each element knows where the next one is and where it came from. If we create a new connection, the system adapts to the new location and points to it. This is essentially what a linked list is.
+
+In simple terms
+
+> A linked list is a collection of **nodes**, where each node contains **data** and a **pointer** to the next node. This structure allows for easily adding and deleting elements without worrying about contiguous memory allocation. The pointers can point to different memory locations in the heap, and we can create new connections between nodes by modifying the pointer addresses to point to new nodes.
+
+## Creating a Node
+
+A linked list is a data structure that contains two crucial pieces of information. The data[Actual Information] and a pointer[pointing to the next data location] This collectively is called a **Node**.
+
+We can create a Node using classes in Cpp
+
+<PreCard pwd="LinkedList.cpp">
+```cpp
+  class Node{
+    public{
+      int data;
+      Node* next;
+    }
+  }
+```
+</PreCard>
+
+### Some conditions we can perform on Nodes
+
+1.  Check if last node is reached
+
+    ```c
+
+    if(p->next==NULL)
+
+    ```
+
+2.  Check if ptr is not pointing to any node
+
+    ```c
+
+    if(p==NULL)
+    if(p==0)
+    if(!p)
+
+    ```
+
+3.  Check if ptr is pointing to any node
+
+    ```c
+
+    if(p!=NULL)
+    if(p!=0)
+    if(p)
+
+    ```
+
+# Reference

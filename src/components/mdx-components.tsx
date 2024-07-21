@@ -89,7 +89,7 @@ const components = {
     <ol className={cn("my-6 ml-6 list-decimal", className)} {...props} />
   ),
   li: ({ className, ...props }: { className: string }) => (
-    <li className={cn("mt-2", className)} {...props} />
+    <li className={cn("my-3", className)} {...props} />
   ),
   blockquote: ({ className, ...props }: { className: string }) => (
     <blockquote
@@ -147,7 +147,11 @@ const components = {
     className: string;
     children: React.ReactNode;
     title: string;
-  }) => <pre className={cn(className, "bg-[#1e1e2e] ")}>{children}</pre>,
+  }) => (
+    <pre className={cn(className, "rounded-lg pl-2  bg-[#1e1e2e] ")}>
+      {children}
+    </pre>
+  ),
   code: ({
     className,
 
@@ -159,7 +163,7 @@ const components = {
   }) => (
     <code
       className={cn(
-        "relative shadow-sm dark:shadow-slate-100  overflow-y-auto    rounded-lg px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "relative min-h-9   items-center overflow-y-auto   px-[0.3rem] py-[0.2rem] font-mono text-sm",
         className
       )}
       {...props}

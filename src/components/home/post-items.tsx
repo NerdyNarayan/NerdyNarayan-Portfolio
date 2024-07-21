@@ -53,9 +53,9 @@ export function PostItem({
         <Image
           src={Banner}
           alt={title}
-          width={300}
+          width={400}
           height={300}
-          className="col-span-1 mx-auto max-w-[300px] hidden md:flex "
+          className="col-span-1 mx-auto w-[300px] min-h-[200px] hidden md:flex "
         />
       </div>
     </Link>

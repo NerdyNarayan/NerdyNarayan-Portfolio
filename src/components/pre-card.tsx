@@ -25,8 +25,8 @@ export function PreCard({
     window.navigator.clipboard.writeText(text);
   };
   return (
-    <div className="border mt-4 min-h-20 ">
-      <div className="flex bg-muted/70 font-mono text-sm  flex-row justify-between items-center gap-2  px-2 ">
+    <div className="border rounded-xl  bg-[#1e1e2e] min-h-20 ">
+      <div className="flex  rounded-t-xl bg-muted/70 font-mono text-sm  flex-row justify-between items-center gap-2  px-2 ">
         {pwd}
         <Button
           className=" w-fit transition-all duration-75 h-10 p-0 m-0 pt-0"
@@ -36,7 +36,9 @@ export function PreCard({
           [Copy]
         </Button>
       </div>
-      <div ref={childrenRef}>{children}</div>
+      <div ref={childrenRef} className=" ">
+        {children}
+      </div>
     </div>
   );
 }
