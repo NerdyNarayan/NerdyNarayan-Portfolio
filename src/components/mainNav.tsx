@@ -7,7 +7,7 @@ import { BsBrilliance } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TbAtomOff } from "react-icons/tb";
 
-import MoveIntoView from "./framer/move-into-view";
+import { MoveIntoView } from "./framer/move-into-view";
 import { ModeToggle } from "./ui/theme-button";
 
 export default function MainNav() {

@@ -10,6 +10,8 @@ const page = () => {
         {posts.map((post, index) => {
           return (
             <PostItem
+              tags={post.tags}
+              date={post.date}
               key={index}
               slug={post.slug}
               title={post.title}

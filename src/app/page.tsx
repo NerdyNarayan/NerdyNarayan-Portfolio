@@ -10,12 +10,9 @@ import { PreCard } from "@/components/pre-card";
 import LatestPost from "../components/home/latest-post";
 export default function HomePage() {
   return (
-    <div className="mx-auto flex justify-center">
-      <div className=" h-full w-full bg-white">
-        <div className="absolute -z-10 bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
-      </div>
-
-      <div className=" container absolute z-10  flex max-w-5xl flex-col  sm:min-h-screen overflow-y-scroll no-scrollbar">
+    <div className=" flex justify-center ">
+      <div className="absolute -z-50 bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
+      <div className=" container absolute z-10  flex  flex-col  sm:min-h-screen overflow-y-scroll no-scrollbar">
         <div className="z-40">
           <div className="h-20"></div>
           <Hero />
@@ -23,6 +20,7 @@ export default function HomePage() {
 
           <AboutMe />
           <LatestPost />
+          <div className="absolute -z-50 left-auto right-0 bottom-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[70%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
         </div>
       </div>
     </div>

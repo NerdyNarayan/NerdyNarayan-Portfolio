@@ -1,9 +1,10 @@
 ---
-title: Setting up a mdx blog system in Nextjs using velitePart-2 
-description: In this blog we, starting from scratch create a fully customizable blog system 
+title: Setting up a mdx blog system in Nextjs using velitePart-2
+description: In this blog we, starting from scratch create a fully customizable blog system
 date: 2024-07-19
 published: true
-banner: /image.png
+banner:"/static/image.png"
+tags: ["Monorepo", "NextJs"]
 ---
 
 ## Introduction
@@ -23,6 +24,7 @@ In this b log i will be going over the setup i am using for the blog you can see
 ## Section 1.1
 
 In the root directory of your project add velite as a dependency
+
 <PreCard pwd='shell'>
 ```shell
 pnpm add velite
@@ -31,27 +33,28 @@ pnpm add velite
 </PreCard>
 
 Using Velite, we can define schemas for various uses. For instance, we can have separate schemas for the blog, doc, and guide sections. All these schemas are collectively defined inside a collection. Let's define a schema for blog posts:
+
 <PreCard pwd='./velite.config.ts'>
 ```json
 import { defineCollection, defineConfig, s } from 'velite';
 
 const computedFields = <T extends { slug: string }>(data: T) => ({
-  ...data,
-  slugAsParams: data.slug.split("/").slice(1).join("/"),
+...data,
+slugAsParams: data.slug.split("/").slice(1).join("/"),
 });
 
 const posts = defineCollection({
-  name: "Post",
-  pattern: "blog/**/*.mdx",
-  schema: s.object({
-    slug: s.path(),
-    title: s.string().max(99),
-    description: s.string().max(999).optional(),
-    date: s.isodate(),
-    published: s.boolean().default(true),
-    banner: s.string().max(99),
-    body: s.mdx(),
-  }).transform(computedFields),
+name: "Post",
+pattern: "blog/\*_/_.mdx",
+schema: s.object({
+slug: s.path(),
+title: s.string().max(99),
+description: s.string().max(999).optional(),
+date: s.isodate(),
+published: s.boolean().default(true),
+banner: s.string().max(99),
+body: s.mdx(),
+}).transform(computedFields),
 });
 
 export default defineConfig({
@@ -69,30 +72,28 @@ export default defineConfig({
 ```
 </PreCard>
 
-
 - \*\*Define Collection
 
-    - Using `zod`, we define a schema for the `posts` collection.
-    - The schema includes fields such as `slug`, `title`, `description`, `date`, `published`, `banner`, and `body`.
-    - The `computedFields` object is used to transform the `slug` field, making it easier to query in the future.
+  - Using `zod`, we define a schema for the `posts` collection.
+  - The schema includes fields such as `slug`, `title`, `description`, `date`, `published`, `banner`, and `body`.
+  - The `computedFields` object is used to transform the `slug` field, making it easier to query in the future.
 
 - **Define Config **
-    - The `defineConfig` function dictates how files are stored and accessed.
-    - **Root**: Specifies where the `mdx` files are stored.
-    - **Data**: Indicates the folder used to store the compiled `mdx` files.
-    - **Assets**: Specifies where to search for images used in the `mdx` files.
-    - **Output Format**: Defines the format in which the output file is generated.
+  - The `defineConfig` function dictates how files are stored and accessed.
+  - **Root**: Specifies where the `mdx` files are stored.
+  - **Data**: Indicates the folder used to store the compiled `mdx` files.
+  - **Assets**: Specifies where to search for images used in the `mdx` files.
+  - **Output Format**: Defines the format in which the output file is generated.
 
 velite supports the use of rehype plugins which would help us with the color formatting etc this is optional as you can still customize how every components look from scratch
 To use the plugins install this dependencies
-<PreCard pwd='shell'>
-```js
- pnpm add rehype-autolink-headings rehype-pretty-code rehype-slug
-```
+
+<PreCard pwd="shell">
+  ```js pnpm add rehype-autolink-headings rehype-pretty-code rehype-slug ```
 </PreCard>
 
-
 and we just have to pass these as a object in the mdx field
+
 <PreCard pwd='./velite.config.ts'>
 ```ts
 **Everything from above**
@@ -108,12 +109,12 @@ ariaLabel:"Link to heading"
 ```
 </PreCard>
 
-
 A good thing to do would be to add .velite folder in the .gitignore file
 
 ## Section 1.2 Modify next.config.js
 
 the official velite docs suggests to modify the nnext.config.js file into this
+
 <PreCard pwd='./nextconfig.json'>
 ```ts
 // eslint-disable-next-line import/extensions
@@ -151,16 +152,13 @@ What i understood was this was to recompile velite eachtime we made a change in 
 Now lets try out whether this worked out or not We still got a long way to go but don't give up now.
 
 In the root directory run
-<PreCard pwd='shell'>
-```shell
-mkdir content/blog
-cd content/blog
-touch test.mdx
-```
+
+<PreCard pwd="shell">
+  ```shell mkdir content/blog cd content/blog touch test.mdx ```
 </PreCard>
 
-
 in the test.mdx create a test document
+
 <PreCard pwd='./content/blog/test.mdx'>
 ```mdx
 ---
@@ -172,22 +170,25 @@ banner: /static/Test.png
 ---
 
 # Heading 1
-## Heading 2
-```
 
-Now in the terminal Run 
+## Heading 2
+
+````
+
+Now in the terminal Run
 </PreCard>
 
 <PreCard pwd='shell'>
 ```shell
 npx velite
-```
-</PreCard>
+````
 
+</PreCard>
 
 Now we should see a new folder .velite in the home directory and we can see the compiled mdx file.
 I would suggest creating a alias to access this files from anywhere in the directory
 In the tsconfig.json add a new alias
+
 <PreCard pwd='tsconfig.json'>
 ```js
 {
@@ -200,8 +201,8 @@ In the tsconfig.json add a new alias
 ```
 </PreCard>
 
-
 Now lets tests out whether we can access the notes
+
 <PreCard pwd='./src/app/page.tsx'>
 ```js
 import {posts} from '#site/config'

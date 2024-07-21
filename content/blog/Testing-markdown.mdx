@@ -1,19 +1,20 @@
 ---
-title: Setting up a controlled development environment for a monorepo Part-2 
+title: Setting up a controlled development environment for a monorepo Part-2
 description: Setting up prettier+Nx+Husky+Lint-Staged+scripts for a streamlined development workflow
 date: 2024-07-07
 published: true
-banner: /static/PrettierTypescriptNx.png
-
+banner: "/static/PrettierTypescriptNx.png"
+tags: ["TypeScript", "NextJs"]
 ---
+
 Welcome to this comprehensive guide on setting up Prettier in a monorepo! In this blog,
-I'll walk you through the steps to manage formatting, linting, and type-checking across all projects and 
+I'll walk you through the steps to manage formatting, linting, and type-checking across all projects and
 packages in your monorepo. We'll leverage several tools to streamline our development workflow:
 
 - **Prettier**: For consistent code formatting.
 - **TypeScript**: For robust linting and type safety.
 - **Husky**: To automate validations on commits.
-- **Nx**: To smartly manage scripts and cache across the monorepo  
+- **Nx**: To smartly manage scripts and cache across the monorepo
 - **lint-staged**: To ensure validations are applied only to staged files.
 
 ---
@@ -58,7 +59,7 @@ packages in your monorepo. We'll leverage several tools to streamline our develo
 ├── [ 845]  README.md
 └── [ 256]  tsconfig.json
 
-```
+````
 </PreCard>
 
 
@@ -75,32 +76,31 @@ In my project, I have two workspaces mentioned in my `pnpm-workspace.yaml`:
 packages:
   - 'apps/*'
   - 'libs/*'
-```
+````
+
 </PreCard>
 
-
 The `apps` directory contains:
+
 - **frontend**: Next.js application.
 - **backend**: Nest.js application.
 
 The `libs` directory contains:
-- **barebone TypeScript**: A sample library to test a local library. 
-you can checkout my blog on setting up typescript from scratch for a mono repo
- [Blog](https://artemisio.vercel.app/blog/Setting-up-typescript-for-a-monorepo-from-scratch)
+
+- **barebone TypeScript**: A sample library to test a local library.
+  you can checkout my blog on setting up typescript from scratch for a mono repo
+  [Blog](https://artemisio.vercel.app/blog/Setting-up-typescript-for-a-monorepo-from-scratch)
 
 ## Step 1: Install the Dependencies
 
 First, install the necessary dependencies in the root directory:
+
 <PreCard pwd="shell">
-```shell
-pnpm add -D prettier -w
-pnpm add --save-dev husky lint-staged -w
-npx nx@latest init
-```
+  ```shell pnpm add -D prettier -w pnpm add --save-dev husky lint-staged -w npx
+  nx@latest init ```
 </PreCard>
 
-
-The `nx` command will prompt you to choose the order in which you want to run the scripts. 
+The `nx` command will prompt you to choose the order in which you want to run the scripts.
 Arrange them according to your preference. Keep in mind this creates an `nx.json` file, allowing easy addition or editing of scripts in the future. Ensure caching is enabled. Here is my `nx.json`:
 
 <PreCard pwd="nx.json">
@@ -126,14 +126,13 @@ Arrange them according to your preference. Keep in mind this creates an `nx.json
 ```
 </PreCard>
 
-
 You can verify whether `nx` is working correctly by running:
+
 <PreCard pwd="shell">
 ```bash
 pnpm exec nx run-many -t <some script that is common in all files>
 ```
 </PreCard>
-
 
 ![alt](/static/Pasted-image-20240705144117.png)
 
@@ -142,6 +141,7 @@ pnpm exec nx run-many -t <some script that is common in all files>
 ### Prettier Configuration
 
 Create a `.prettierrc` file in the root directory and add your required formatting rules. Here are the rules I used:
+
 <PreCard pwd="./.prettierrc">
 ```json
 {
@@ -156,10 +156,10 @@ Create a `.prettierrc` file in the root directory and add your required formatti
 ```
 </PreCard>
 
-
 ### Adding Scripts
 
 In the root directory, add the following scripts to your `package.json`:
+
 <PreCard pwd="./package.json">
 ```json
 {
@@ -176,19 +176,19 @@ In the root directory, add the following scripts to your `package.json`:
 ```
 </PreCard>
 
-
 #### Script Breakdown
 
 1. **build**: Runs the build script in all subprojects.
-2. **tsc**: The TypeScript compiler which outputs the compiled TypeScript code in CommonJS format. 
-[Check out the TODO section for a detailed TypeScript setup](#).
+2. **tsc**: The TypeScript compiler which outputs the compiled TypeScript code in CommonJS format.
+   [Check out the TODO section for a detailed TypeScript setup](#).
 3. **lint**: Runs all available lint scripts, like ESLint.
-4. **format, format:write, format:check**: Scripts to use Prettier. 
+4. **format, format:write, format:check**: Scripts to use Prettier.
 5. **validate**: Executes `format:write`, `lint`, and `tsc` scripts in order.
 
 ### Set up lint-staged
 
 Add the following configuration to your `package.json` in the root directory:
+
 <PreCard pwd="./package.json">
 
 ```json
@@ -198,6 +198,7 @@ Add the following configuration to your `package.json` in the root directory:
   }
 }
 ```
+
 </PreCard>
 
 This sets up lint-staged to run the `validate` script only on staged files.
@@ -211,6 +212,7 @@ Add a pre-commit hook in your `.husky` file:
 ```sh
 pnpm lint-staged
 ```
+
 </PreCard>
 This ensures the lint-staged command runs whenever you try to make a commit.
 
@@ -223,9 +225,6 @@ Let's verify the setup by intentionally causing errors. In my `sample-lib`, I ha
 ![alt](/static/Pasted-image-20240705144117.png)
 
 After saving, try to stage the file and commit it.
- You can see the error log here: [⚠ Running tasks for staged files... - Pastebin.com](https://pastebin.com/MrGaNSS9)
+You can see the error log here: [⚠ Running tasks for staged files... - Pastebin.com](https://pastebin.com/MrGaNSS9)
 
 As you can see, it prevented us from committing faulty code to our codebase, which is incredibly helpful.
-
-
-

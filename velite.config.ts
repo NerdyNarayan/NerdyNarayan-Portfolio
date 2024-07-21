@@ -19,6 +19,7 @@ const computedFields = <T extends { slug: string }>(data: T) => ({
     date:s.isodate(),
     published:s.boolean().default(true),
     banner:s.string().max(99),
+    tags:s.array(s.string()),
     body:s.mdx()
   }).transform(computedFields)})
     export default defineConfig({
@@ -27,7 +28,7 @@ const computedFields = <T extends { slug: string }>(data: T) => ({
     data: "./.velite",
     assets:"public/static",
     base:"/static/",
-    name:"[name].[hash:6].[ext",
+    name:"[name].[hash:6].[ext]",
     clean:true
   },
   collections: {posts},

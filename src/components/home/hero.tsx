@@ -3,15 +3,16 @@ import React from "react";
 import RotateWord from "../framer/rotate-word";
 import Image from "next/image";
 import { TypeWord } from "../framer/type-word";
-import MoveIntoView from "../framer/move-into-view";
+import { MoveIntoView } from "../framer/move-into-view";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
+import { GoDownload } from "react-icons/go";
 const Hero = () => {
   const variant = {
     hidden: {
       opacity: 0,
-      filter: "blur(10px)",
+      filter: "blur(15px)", // Increased blur for hidden state
     },
     visible: {
       opacity: 1,
@@ -21,15 +22,17 @@ const Hero = () => {
       },
     },
   };
+
   return (
-    <div className=" pt-6 mt-4 flex justify-center  sm:justify-between">
+    <div className="pt-9 mt-6 flex justify-center sm:justify-between mb-10">
       <MoveIntoView left={true}>
         <div className="">
           <div className="flex text-pretty flex-col">
-            <div className="mb-5 flex">
-              <span className=" font-sans  text-muted-foreground text-lg ">
+            <div className="mb-7.5 flex">
+              <span className="font-sans text-muted-foreground text-lg md:text-3xl">
                 <TypeWord />
               </span>
+              <div className="h-10"></div>
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -38,32 +41,32 @@ const Hero = () => {
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
-                className="text-muted-foreground text-lg"
+                className="text-muted-foreground text-lg md:text-3xl" // Increased font size
               >
                 |
               </motion.span>
             </div>
 
-            <div className="flex flex-col  text-wrap font-bold md:text-5xl text-[34px]">
-              <div className="flex flex-row gap-3">
+            <div className="flex flex-col text-wrap font-bold md:text-7xl text-6xl">
+              <div className="flex flex-row gap-4.5">
+                {" "}
                 <div className="">A Full Stack Developer</div>
               </div>
-              <div className="px-4 flex items-center gap-2">
+              <div className="px-3 flex items-center gap-3">
                 <span className="font-bold ">+</span>
                 <RotateWord
-                  words={["Designer", "Creator", "Innovator"]}
-                  className="text-2xl  md:text-4xl"
+                  words={["Designer", "Creator", "Blogger", "Content Creator"]}
+                  className="text-4xl md:text-6xl text-nowrap"
                 />
               </div>
             </div>
           </div>
-          <div className="mt-8 flex justify-between">
-            <div className="inline-block items-center rounded-2xl bg-accent px-2 py-2">
-              <div className="flex items-center gap-2 text-sm text-primary">
+          <div className="mt-12 flex justify-between">
+            <div className="flex rounded-2xl bg-accent px-3 ">
+              <div className="flex items-center gap-3 text-base text-primary ">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="flex items-center justify-center text-sm space-x-1.5"
                 >
                   <FaGlobeAmericas className=""></FaGlobeAmericas>
                 </motion.div>
@@ -72,16 +75,24 @@ const Hero = () => {
                 </span>
               </div>
             </div>
-            <div className="flex  text-sm md:text-sm">
-              <Button className="p-2">Get in Touch</Button>
-              <Button variant={"outline"} className="">
+            <div className="gap-4  text-base hidden md:flex">
+              {" "}
+              {/* Adjusted font size if necessary */}
+              <Button className="md:p-6 md:text-xl rounded-xl font-semibold text-muted">
+                Get in Touch
+              </Button>{" "}
+              {/* Increased padding */}
+              <Button
+                variant={"outline"}
+                className="md:p-6 flex gap-2 md:text-xl roudned-xl font-semibold"
+              >
                 Resume
+                <GoDownload />
               </Button>
             </div>
           </div>
         </div>
       </MoveIntoView>
-
       <motion.div
         className=""
         initial="hidden"
@@ -89,14 +100,15 @@ const Hero = () => {
         variants={variant}
       >
         <Image
-          className="hidden rounded-full shadow-xl overflow-hidden w-[180px] h-[180px]    md:block"
+          className="hidden rounded-full shadow-xl overflow-hidden w-[270px] h-[270px] md:block" // Increased size
           src="/Profile.jpg"
-          width={200}
-          height={200}
+          width={300} // Increased size
+          height={300} // Increased size
           alt="image"
         />
       </motion.div>
     </div>
   );
 };
+
 export default Hero;
