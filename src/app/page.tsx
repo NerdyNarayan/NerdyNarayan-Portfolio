@@ -1,16 +1,8 @@
 import React from "react";
-import MainNav from "../components/mainNav";
 import Hero from "../components/home/hero";
 import MyProjects from "../components/home/my-projects";
 import AboutMe from "../components/home/about-me";
-import Image from "next/image";
-import { posts } from "#site/content";
-import { Mdx, MDXContent } from "@/components/mdx-components";
-import { PreCard } from "@/components/pre-card";
 import LatestPost from "../components/home/latest-post";
-import { Marquee } from "@/components/ui/marquee";
-import { FaReact } from "react-icons/fa";
-import { Card, CardContent } from "@/components/ui/card";
 export default function HomePage() {
   return (
     <div className=" flex justify-center ">

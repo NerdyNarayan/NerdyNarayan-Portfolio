@@ -24,10 +24,9 @@ Before diving into the concept of a linked list, imagine the workings of your to
 ["google.com", "youtube.com", "github.com"]
 ```
 
-Now, suppose we want to go back to google and then visit reddit. We traverse back in the array to google. However, the problem arises when we want to add reddit in front of google and remove both youtube and github. We can't just insert an element between google and youtube, since for an element to be added, we need the exact next memory location to be empty, and it is impossible to guarantee that it is empty.
-This would lead to memory issues and is quite a hassle.
+Now, suppose we want to go back to google.com and then visit reddit.com. We can't just insert an element between google.com and youtube.com in an array because it requires the exact next memory location to be empty, which is not guaranteed. This leads to memory issues and complexity.
 
-This problem is solved using a linked list. With a linked list, we can store data in a way that each element knows where the next one is and where it came from. If we create a new connection, the system adapts to the new location and points to it. This is essentially what a linked list is.
+This problem is solved using a linked list. In a linked list, each element (node) knows the next one, allowing us to easily add or remove elements without worrying about contiguous memory. This adaptability is the essence of a linked list.
 
 In simple terms
 
@@ -40,6 +39,7 @@ A linked list is a data structure that contains two crucial pieces of informatio
 We can create a Node using classes in Cpp
 
 <PreCard pwd="LinkedList.cpp">
+
 ```cpp
   class Node{
     public{
@@ -48,6 +48,23 @@ We can create a Node using classes in Cpp
     }
   }
 ```
+
+</PreCard>
+We can create aditonal constructors for cases where we only want to put the data or when we want to put both the data and the next pointer.
+<PreCard pwd="LinkedList.cpp">
+
+```cpp
+public:
+  Node(int val){
+    data = val;
+    next = nullptr;
+  }
+  Node(int val, Node* nextNode){
+    data = val;
+    next = nextNode;
+  }
+```
+
 </PreCard>
 
 ### Some conditions we can perform on Nodes
@@ -80,4 +97,128 @@ We can create a Node using classes in Cpp
 
     ```
 
+## Creating a linked List
+
+We create a linked list by creating the first node and point it to the next node of the list.
+
+<PreCard pwd="LinkedList.cpp">
+
+```cpp
+
+  Node* head = new Node();
+  head->data = 10;
+  head->next = NULL;
+
+```
+
+</PreCard>
+And if we want to extend the linked list we just create a new node and point the next of the last node to the new node.
+
+<PreCard pwd="LinkedList.cpp">
+```cpp
+
+Node* newNode = new Node();
+newNode->data = 20;
+newNode->next = NULL;
+head->next = newNode;
+
+```
+</PreCard>
+  
+we could also turn a array to a linked list
+
+
+<PreCard pwd="LinkedList.cpp">
+
+```cpp
+  #include<vector>
+  int main() {
+    vector<int> v = {1, 2, 3, 4, 5};
+    Node *head = new Node(v[0]);
+    head->next = new Node(v[1]);
+    head->next->next = new Node(v[2]);
+    head->next->next->next = new Node(v[3]);
+    return 0;
+}
+```
+
+</PreCard>
+
+## Traversing a linked list 
+
+While we can traverse a linked list using a for loop, it is more common to use a while loop. This is because the size of the linked list is not fixed, and we can't use the size of the linked list as a condition for the for loop.
+
+We traverse a linked list by starting from the head node and on each iteration we actually move to the next node by changing the Current node to the address of the next node.
+
+Lets print the data of each node in the Linked list and also count the number of nodes in the linked list.
+<PreCard pwd="LinkedList.cpp">
+```cpp
+void printList(Node* head){
+  Node* ptr = head;
+  int count=0;
+  while(ptr!=NULL){
+    cout<<ptr->data<<" ";
+    ptr = ptr->next;
+    count++;
+  }
+  cout<<"Number of nodes in the linked list are: "<<count;
+}
+```
+</PreCard>
+
+we are using a temporary node because if we use the head node we will actually be changing the head node itself and we will lose the reference to the head node.
+
+>We should always use a temporary node to traverse the linked list.
+
+
+Now, try to implement the following functions on your own:
+        - [ ] empty() - bool returns true if empty
+        - [ ] value_at(index) - returns the value of the nth item (starting at 0 for first)
+        - [ ] push_front(value) - adds an item to the front of the list
+        - [ ] pop_front() - remove the front item and return its value
+        - [ ] push_back(value) - adds an item at the end
+        - [ ] pop_back() - removes end item and returns its value
+        - [ ] front() - get the value of the front item
+        - [ ] back() - get the value of the end item
+        - [ ] insert(index, value) - insert value at index, so the current item at that index is pointed to by the new item at the index
+        - [ ] erase(index) - removes node at given index
+        - [ ] value_n_from_end(n) - returns the value of the node at the nth position from the end of the list
+        - [ ] reverse() - reverses the list
+        - [ ] remove_value(value) - removes the first item in the list with this value
+
+I will be updating this blog in the future with the implementation of these functions.
+
+## Full code for the linked list
+<PreCard pwd="LinkedList.cpp">
+```cpp
+  #include<iostream>
+  #include<vector>
+  using namespace std;
+  class Node{
+    public{
+      int data;
+      Node* next;
+    }
+  public:
+    Node(int val){
+      data = val;
+      next = nullptr;
+  }
+    Node(int val, Node* nextNode){
+      data = val;
+      next = nextNode;
+    }
+  }
+
+  int main() {
+    vector<int> v = {1, 2, 3, 4, 5};
+    Node *head = new Node(v[0]);
+    head->next = new Node(v[1]);
+    head->next->next = new Node(v[2]);
+    head->next->next->next = new Node(v[3]);
+    return 0;
+}
+```
+</PreCard>
 # Reference
+
