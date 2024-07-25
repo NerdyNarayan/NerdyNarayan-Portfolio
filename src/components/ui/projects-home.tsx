@@ -16,7 +16,7 @@ const ProjectCardHome = () => {
           <div className="relative ">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black rounded-2xl"></div>
             <Image
-              src="/image.png"
+              src="/linkohub-project.png"
               alt="Project cover image"
               width={400}
               height={400}

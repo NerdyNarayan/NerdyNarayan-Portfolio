@@ -26,7 +26,7 @@ export default function MainNav() {
               </Link>
             </motion.div>
             <div className="hidden mr-20 text-md items-center font-semibold transition-all duration-200 justify-evenly gap-5 sm:flex">
-              <Link className="hover:text-primary/[0.8]" href={"./blog"}>
+              <Link className="hover:text-primary/[0.8]" href={"/blog"}>
                 Blog
               </Link>
               <div className="hover:text-primary/[0.8]">Projects</div>

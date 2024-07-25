@@ -155,6 +155,9 @@ const components = {
       {children}
     </pre>
   ),
+  pre [data - line]: {
+    padding: 0 1rem;
+  },
   code: ({
     className,
 
