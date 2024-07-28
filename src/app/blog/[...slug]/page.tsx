@@ -3,10 +3,11 @@ import Image from "next/image";
 import { posts, Post } from "#site/content";
 import { Mdx } from "@/components/mdx-components";
 import Link from "next/link";
+import Toc from "@/components/Toc";
 
 async function getPost(params: { params: { slug: string } }) {
   const post = posts.find(
-    (post: Post) => post.slug.split("/").pop() === params.params.slug[0],
+    (post: Post) => post.slug.split("/").pop() === params.params.slug[0]
   );
   return post;
 }

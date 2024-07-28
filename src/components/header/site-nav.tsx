@@ -1,3 +1,4 @@
+"use client";
 import { NavItem } from "@/config/site";
 import { useActiveNav } from "@/hooks/useActiveNav";
 import Link from "next/link";
