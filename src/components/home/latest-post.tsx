@@ -1,10 +1,15 @@
-import { posts } from "#site/content";
 import Link from "next/link";
 import React from "react";
-import { PostItem } from "./post-items";
-import { Button } from "../ui/button";
+import { ArrowBigLeft, ArrowRightIcon } from "lucide-react";
+import { MdOpenInNew } from "react-icons/md";
+
+import { posts } from "#site/content";
+
+import { Button, FancyButton } from "../ui/button";
 import { MoveIntoVisible } from "../framer/move-into-view";
 import CenterText from "../ui/center-text";
+
+import { PostItem } from "./post-items";
 
 const LatestPost = () => {
   return (
@@ -15,21 +20,26 @@ const LatestPost = () => {
           {posts.map((post, index) => {
             return (
               <PostItem
-                tags={post.tags}
-                date={post.date}
                 key={index}
-                slug={post.slug}
-                title={post.title}
-                description={post?.description ?? ""}
                 Banner={post.banner}
+                date={post.date}
+                description={post?.description ?? ""}
+                slug={post.slug}
+                tags={post.tags}
+                title={post.title}
               />
             );
           })}
 
-          <Link href="/blog">
-            <Button className="mt-4 bg-primary-foreground text-primary flex mx-auto">
+          <Link className=" mx-auto flex " href="/blog ">
+            <FancyButton
+              Icon={ArrowRightIcon}
+              className=""
+              iconPlacement="right"
+              variant={"expandIcon"}
+            >
               View More
-            </Button>
+            </FancyButton>
           </Link>
         </div>
       </>

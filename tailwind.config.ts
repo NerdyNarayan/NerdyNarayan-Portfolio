@@ -75,8 +75,13 @@ const config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(calc(-100% + var(--gap)))" },
         },
+        shine: {
+          from: { backgroundPosition: "200% 0" },
+          to: { backgroundPosition: "-200% 0" },
+        },
       },
       animation: {
+        shine: "shine 8s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "marquee-left": "marquee-left var(--duration, 40s) linear infinite",

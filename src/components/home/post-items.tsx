@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import posts from "#site/content";
-import { Button } from "../ui/button";
 import { motion } from "framer-motion";
+
+import posts from "#site/content";
+
+import { Button } from "../ui/button";
 interface PostItemProps {
   slug: string;
   title: string;
@@ -22,10 +24,11 @@ export function PostItem({
   tags,
 }: PostItemProps) {
   const post = posts;
+
   return (
     <Link
-      href={`/${slug}`}
       className="w-full mx-auto  border-b mb-4 hover:opacity-80 "
+      href={`/${slug}`}
     >
       <div className=" grid md:grid-cols-4 w-full mb-5  ">
         <div className="flex col-span-3 flex-col  gap-2 transition-all duration-200">
@@ -51,11 +54,11 @@ export function PostItem({
           <div className="flex text-xl text-[#a6adc8]">{description}</div>
         </div>
         <Image
-          src={Banner}
           alt={title}
-          width={400}
+          className="col-span-1 mx-auto w-[300px] min-h-[200px] hidden md:flex  "
           height={300}
-          className="col-span-1 mx-auto w-[300px] min-h-[200px] hidden md:flex "
+          src={Banner}
+          width={400}
         />
       </div>
     </Link>

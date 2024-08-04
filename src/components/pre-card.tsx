@@ -1,6 +1,8 @@
 "use client";
 import React, { useRef } from "react";
+
 import { cn } from "@/lib/utils";
+
 import { Button } from "./ui/button";
 
 interface CalloutProps {
@@ -22,8 +24,10 @@ export function PreCard({
 
   const copyToClipboard = () => {
     const text = childrenRef.current?.textContent || "";
+
     window.navigator.clipboard.writeText(text);
   };
+
   return (
     <div className="mt-4 rounded-xl  bg-[#1e1e2e] min-h-20 ">
       <div className="flex  rounded-t-xl bg-accent/90 md:text-sm dark:bg-muted/70 font-mono text-[12px]  flex-row justify-between items-center gap-2  px-2 ">

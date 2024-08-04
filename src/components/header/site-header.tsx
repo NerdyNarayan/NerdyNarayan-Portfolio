@@ -7,10 +7,12 @@ import { BsBrilliance } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TbAtomOff } from "react-icons/tb";
 
-import { MoveIntoView } from "../framer/move-into-view";
-import { ModeToggle } from "../ui/theme-button";
 import { cn } from "@/lib/utils";
 import { useActiveNav } from "@/hooks/useActiveNav";
+
+import { MoveIntoView } from "../framer/move-into-view";
+import { ModeToggle } from "../ui/theme-button";
+
 import SiteNav from "./site-nav";
 import SiteMenu from "./site-menu";
 export default function MainNav() {
@@ -21,8 +23,8 @@ export default function MainNav() {
           <div className="backdrop-blur-xl   supports-[backdrop-blur]   border border-black/10 dark:border-white/10 shadow-2xl mt-4   flex  flex-row items-center justify-between p-4 pt-1 pb-1 rounded-2xl  ">
             <div className="flex">
               <Link
-                href="/"
                 className="flex  items-center gap-1 text-xl mr-24 font-bold"
+                href="/"
               >
                 <TbAtomOff className="text-2xl" />
                 <div className="text-nowrap">Nerdy Narayan</div>

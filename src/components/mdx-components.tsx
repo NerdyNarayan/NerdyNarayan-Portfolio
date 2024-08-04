@@ -1,14 +1,19 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/heading-has-content */
 import * as React from "react";
 import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
 
 import { cn } from "@/lib/utils";
+
 import { MdxCard } from "./mdx-card";
 import { Button } from "./ui/button";
 import { PreCard } from "./pre-card";
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
+
   return fn({ ...runtime }).default;
 };
 
@@ -17,7 +22,7 @@ const components = {
     <h1
       className={cn(
         "mt-2 scroll-m-20 text-4xl font-bold tracking-tight   ",
-        className
+        className,
       )}
       {...props}
     />
@@ -26,7 +31,7 @@ const components = {
     <h2
       className={cn(
         "mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
-        className
+        className,
       )}
       {...props}
     />
@@ -35,7 +40,7 @@ const components = {
     <h3
       className={cn(
         "mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -44,7 +49,7 @@ const components = {
     <h4
       className={cn(
         "mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -53,7 +58,7 @@ const components = {
     <h5
       className={cn(
         "mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -62,7 +67,7 @@ const components = {
     <h6
       className={cn(
         "mt-8 scroll-m-20 text-base font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -71,7 +76,7 @@ const components = {
     <a
       className={cn(
         "font-medium text-purple-300 hover:underline hover:text-primary/90  underline-offset-4",
-        className
+        className,
       )}
       {...props}
     />
@@ -80,7 +85,7 @@ const components = {
     <p
       className={cn(
         "leading-7 md:leading-10 md:text-[20px]  [&:not(:first-child)]:mt-6",
-        className
+        className,
       )}
       {...props}
     />
@@ -98,7 +103,7 @@ const components = {
     <blockquote
       className={cn(
         "[&>*]:text-muted-foreground mt-6 border-l-2 pl-6 italic",
-        className
+        className,
       )}
       {...props}
     />
@@ -127,7 +132,7 @@ const components = {
     <th
       className={cn(
         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        className,
       )}
       {...props}
     />
@@ -136,7 +141,7 @@ const components = {
     <td
       className={cn(
         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        className,
       )}
       {...props}
     />
@@ -167,10 +172,10 @@ const components = {
     <code
       className={cn(
         "relative min-h-9   items-center overflow-y-auto   px-[0.3rem] py-[0.2rem] font-mono text-sm",
-        className
+        className,
       )}
       {...props}
-    ></code>
+    />
   ),
   Image,
   Card: MdxCard,
@@ -184,6 +189,7 @@ interface MdxProps {
 
 export function MDXContent({ code, components }: MdxProps) {
   const Component = useMDXComponent(code);
+
   return (
     <div className="mdx">
       <Component components={{ ...components }} />;
