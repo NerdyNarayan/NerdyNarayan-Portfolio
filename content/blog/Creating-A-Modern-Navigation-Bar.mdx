@@ -1,5 +1,5 @@
 ---
-title:  Creating a Modern Navigation Bar for LunarMovies
+title: Creating a Modern Navigation Bar for LunarMovies
 description: Create a responsive modern navbar using Nextjs and Shadcn.
 date: 2024-07-27
 published: true
@@ -16,8 +16,9 @@ As I embark on a new venture to build a movie app similar to Netflix, I plan to 
       - You're all set to go!
 
     2.**If you are not using my next-starter:**
-          - Set up Shadcn 
+          - Set up Shadcn
           - Add an icon library of your choice.
+
 You can find my next-starter [here](https://github.com/NerdyNarayan/next-starter.git)
 
 If you are someone experienced you can straight away have a look at the source code [here](https://github.com/NerdyNarayan/lunar-movies)
@@ -36,6 +37,7 @@ Working with a design in hand has always been my preferred method. You can use a
 Having a cluttered navbar is not ideal; try to keep it minimal. In my application, the navbar includes the following items: [Home, Movies, TV Shows, Anime, People, Trending]. Let's first create the data for the navbar.
 
 1. **Create a site config file:**
+
 <PreCard pwd="src/config/site.ts">
 
 ```ts
@@ -43,43 +45,43 @@ export type NavItem = {
   title: string;
   href: string;
   icon: IconType; // This will differ depending on the icon library
-}
+};
 
 const home = {
   title: "Home",
   href: "/",
-  icon: FaHome
-}
+  icon: FaHome,
+};
 
 const movies = {
   title: "Movies",
   href: "/movie",
-  icon: MdLocalMovies
-}
+  icon: MdLocalMovies,
+};
 
 const tvShows = {
   title: "TV Shows",
   href: "/tv-show",
-  icon: PiTelevision
-}
+  icon: PiTelevision,
+};
 
 const anime = {
   title: "Anime",
   href: "/anime",
-  icon: GiBlackKnightHelm
-}
+  icon: GiBlackKnightHelm,
+};
 
 const people = {
   title: "People",
   href: "/people",
-  icon: FaUser
-}
+  icon: FaUser,
+};
 
 const trending = {
   title: "Trending",
   href: "/trending",
-  icon: IoMdTrendingUp
-}
+  icon: IoMdTrendingUp,
+};
 ```
 
 </PreCard>
@@ -93,22 +95,17 @@ export const navItems = {
 </PreCard>
 Now, export these as an array of `NavItem`
 
-
 ---
 
 ## Step 2: Create a Navbar Component
 
 I will be using Shadcn's Navbar Component. If you want to use it too, run the following command in the terminal:
 
-<PreCard pwd="shell">
-```ts
-pnpm ui:add navigation-menu
-```
-</PreCard>
-
+<PreCard pwd="shell">```ts pnpm ui:add navigation-menu ```</PreCard>
 
 The navigation-menu structure follows this hierarchy:
-```ts 
+
+```ts
 <NavigationMenu>
   <NavigationMenuList>
     <NavigationMenuItem>
@@ -116,7 +113,9 @@ The navigation-menu structure follows this hierarchy:
   </NavigationMenuList>
 </NavigationMenu>
 ```
+
 Since we will be using links to redirect the user to different routes, we should create a new `SiteNavItem` component to function as a navigation link:
+
 <PreCard pwd="src/components/header/site-nav.tsx">
 
 ```ts
@@ -141,36 +140,35 @@ const SiteNavItem = ({ title, href, icon }: NavItem) => {
   );
 };
 ```
+
 </PreCard>
 `useActiveNav` is a custom hook that checks whether the current path matches the `href` param, helping to achieve the active item effect:
 
 <PreCard pwd="src/hooks/useActiveNav.ts">
 
 ```ts
-"use client"
-import { usePathname } from "next/navigation"
+"use client";
+import { usePathname } from "next/navigation";
 
 export const useActiveNav = (href: string) => {
   const pathname = usePathname();
   if (href === "/") return pathname === href;
   return pathname.startsWith(href);
-}
+};
 ```
+
 </PreCard>
-
-
-
-
-
 
 Now, if you check how it looks, it should resemble the intended design.
 ![/images/blog/ModernNavbar.jpeg](/images/blog/nav.png)
 
 ---
+
 ## Step 3 Layout the design
 
 Depending on how you designed your Header you can now start implementing that design
 In my case I just added a Home icon ,search input,modeToggle around my navbar
+
 <PreCard pwd="src/components/header/site-header.tsx">
 ```ts
  const SiteHeader = () => {
@@ -189,25 +187,20 @@ In my case I just added a Home icon ,search input,modeToggle around my navbar
 
 export default SiteHeader;
 
-
-```
-
 </PreCard>
-        
-                
+
 So now my header looks like
 
 ![nav](/images/blog/navFinished.png)
 So the last thing left to do is to adapt the design for other screen sizes
 
 ## Step 4: Make the Navbar Responsive
-We will design the hamburger menu in a similar fashion but this time we will be using the drawer component from shadcn so run
- <PreCard pwd="shell">
-```ts
-pnpm ui:add drawer
-```
-      </PreCard>
 
+We will design the hamburger menu in a similar fashion but this time we will be using the drawer component from shadcn so run
+
+{" "}
+
+<PreCard pwd="shell">```ts pnpm ui:add drawer ```</PreCard>
 
 Similarly create the menuItems
 
@@ -235,6 +228,7 @@ const SiteMenuItem = ({ title, href, icon }: NavItem) => {
   );
 };
 ```
+
       </PreCard>
 
 Now create the hamburger menu
@@ -275,6 +269,7 @@ const SiteMenu = () => {
   );
 };
 ```
+
 </PreCard>
 Now fit the menu in the header component
 
@@ -294,7 +289,6 @@ const SiteHeader = () => {
     </div>
   );
 };
-
 export default SiteHeader;
 
 ```
@@ -303,7 +297,8 @@ export default SiteHeader;
 
 ![](/images/blog/hamburgernav.png)
 
-Looks Good! 
+Looks Good!
 
 Feel free to reach out to me  on LinkedIn or Twitter if you have any questions or suggestions. I'm always open to feedback.
 You can find all my links here [ Linkotree](https://link-hub-chi.vercel.app/)
+```

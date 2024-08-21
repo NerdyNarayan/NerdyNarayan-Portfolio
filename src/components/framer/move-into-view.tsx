@@ -19,9 +19,9 @@ export function MoveIntoView(props: MoveIntoViewProps) {
     <AnimatePresence>
       {props.left && (
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.6 }}
         >
           {props.children}
@@ -29,9 +29,9 @@ export function MoveIntoView(props: MoveIntoViewProps) {
       )}
       {props.right && (
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: 20 }}
           transition={{ duration: 0.6 }}
         >
           {props.children}
@@ -39,9 +39,9 @@ export function MoveIntoView(props: MoveIntoViewProps) {
       )}
       {props.up && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
         >
           {props.children}
@@ -49,9 +49,9 @@ export function MoveIntoView(props: MoveIntoViewProps) {
       )}
       {props.down && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
           {props.children}
@@ -64,9 +64,9 @@ export function MoveIntoVisible(props: moveIntoVisibleProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       viewport={{ once: true, amount: props.amount || 0.5 }}
+      whileInView={{ opacity: 1, y: 0 }}
     >
       {props.children}
     </motion.div>

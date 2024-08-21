@@ -16,7 +16,7 @@ const ProjectCardHome = ({ className }: { className?: string }) => {
     <Link href="./">
       <motion.div
         className={cn(
-          "group rounded-xl bg-gradient-to-r   from-purple-100 via-purple-400 to-purple-100 p-[1px]    ",
+          "group rounded-xl dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
           className,
         )}
         transition={{ duration: 0.1 }}

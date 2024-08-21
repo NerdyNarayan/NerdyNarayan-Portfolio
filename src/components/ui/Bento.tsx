@@ -1,3 +1,4 @@
+"use client";
 import type { ReactNode } from "react";
 
 import { ArrowRightIcon } from "@radix-ui/react-icons";
@@ -16,7 +17,7 @@ function BentoGrid({
   return (
     <div
       className={cn(
-        "grid w-full auto-rows-[15rem] grid-cols-3 gap-4",
+        "grid w-full auto-rows-[20rem] grid-cols-3 gap-4",
         className,
       )}
     >
@@ -29,7 +30,6 @@ function BentoCard({
   name,
   className,
   background,
-  Icon,
   description,
   href,
   cta,
@@ -40,7 +40,7 @@ function BentoCard({
   Icon?: any;
   description: string;
   href: string;
-  cta: string;
+  cta?: string;
 }) {
   return (
     <div
@@ -54,33 +54,38 @@ function BentoCard({
         className,
       )}
     >
-      <div>{background}</div>
-      <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
-        <Icon className="size-12 origin-left transform-gpu text-neutral-700 transition-all duration-300 ease-in-out group-hover:scale-75" />
-        <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
-          {name}
-        </h3>
-        <p className="max-w-lg text-neutral-400">{description}</p>
-      </div>
+      <div className="mt-4">{background}</div>
+      {cta ? (
+        <div>
+          <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
+            <h3 className="text-xl font-bold text-neutral-700 dark:text-neutral-300">
+              {name}
+            </h3>
+            <p className="max-w-lg text-neutral-400">{description}</p>
+          </div>
 
-      <div
-        className={cn(
-          "pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100",
-        )}
-      >
-        <Button
-          asChild
-          className="pointer-events-auto"
-          size="sm"
-          variant="ghost"
-        >
-          <a href={href}>
-            {cta}
-            <ArrowRightIcon className="ml-2 size-4" />
-          </a>
-        </Button>
-      </div>
-      <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
+          <div
+            className={cn(
+              "pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100",
+            )}
+          >
+            <Button
+              asChild
+              className="pointer-events-auto"
+              size="sm"
+              variant="ghost"
+            >
+              <a href={href}>
+                {cta}
+                <ArrowRightIcon className="ml-2 size-4" />
+              </a>
+            </Button>
+          </div>
+          <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
+        </div>
+      ) : (
+        <></>
+      )}{" "}
     </div>
   );
 }
